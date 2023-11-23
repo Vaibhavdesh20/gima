@@ -1,0 +1,41 @@
+body{
+    background-color: #414141;
+    text-align: center;
+    position: center fixed;
+    color: aliceblue;
+    padding-top: 2em;
+}
+
+.em{
+    margin-top: 2em;
+    position:inherit;
+    text-align: center;
+}
+
+button{
+    margin-top: 1em;
+    margin-left: 4em;
+    
+}
+button:hover{
+     color: ##00adb5;
+}
+
+
+
+/*
+.form-group{
+    padding: 3px;
+    margin-right: 1px;
+   
+    
+}
+
+
+
+button{
+    padding: 5px;
+}
+button:hover{
+     color: #00adb5;
+}*/

@@ -1,0 +1,58 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <title>Gimatex IPList</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+{% include 'navbar.html' %}
+{% include 'messages.html' %}
+<body>
+  <section class="h-100 h-custom" style="background-color: #414141;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+              
+            <div class="card-body p-4 p-md-5" style="color: #414141;">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Add New Entry</h3>
+  
+              <form class="form-outline " method="POST" action="{% url 'add_ip' %}">
+             
+               {% csrf_token %}
+             
+             
+               {{form.ip_address}}
+             
+             
+             
+               {{form.dept}}
+            
+             
+               {{form.user_name}}
+             
+             
+               {{form.mac_address}}
+               <div class="btn-group dropup btn btn-secondary dropdown-toggle ">
+                 Site {{form.site}}
+              </div>
+               <div class="btn-group dropup btn btn-secondary dropdown-toggle dropdown-toggle-split">
+                 Group {{form.group}}
+               </div>
+              </br>
+            
+             <button style="margin-top: 0.6em;" type="submit" class="btn btn-success btn-lg mb-1" style="margin-right: 15%;">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

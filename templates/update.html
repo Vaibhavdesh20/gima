@@ -1,0 +1,51 @@
+{% load static %}
+   {% csrf_token %}
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <title>Gimatex IPList</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+   </head>
+   {% include 'navbar.html' %}
+   {% include 'messages.html' %}
+   <body>
+     <section class="h-100 h-custom" style="background-color: #414141;">
+       <div class="container py-5 h-100">
+         <div class="row d-flex justify-content-center align-items-center h-100">
+           <div class="col-lg-8 col-xl-6">
+             <div class="card rounded-3">
+                 
+               <div class="card-body p-4 p-md-5" style="color: #414141;">
+                 
+     
+                 <form class="form-outline" method="POST" action=" ">
+                 {% csrf_token %}
+                 <h1>Update member</h1>
+                  {{form.as_p}}
+                  <button type="submit" class="btn btn-success btn-lg mb-1" style="margin-right: 15%;">Submit</button>
+                  <button type="submit" class="btn btn-success btn-lg mb-1" style="margin-right: 15%;">Close</button>
+                </form>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+   </body>
+   </html>
+
+{% comment %} <form action="updaterecord/{{ iplist.id }}" method="post">
+{% csrf_token %}
+group:<br>
+<input name="group" value="{{ iplist.group }}">
+<br><br>
+IP Address:<br>
+<input name="last" value="{{ iplist.ip_address }}">
+<br><br>
+<input type="submit" value="Submit">
+</form> {% endcomment %}

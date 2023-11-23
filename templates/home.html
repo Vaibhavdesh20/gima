@@ -1,0 +1,66 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} <link rel="stylesheet" href="{% static 'style.css'%}"> {% endcomment %}
+  <title>Gimatex IPList</title>
+  <link rel="icon" href="{% static './images/favicon.ico'%}">
+  <link rel="stylesheet" href="{% static 'file.js'%}">
+</head>
+<img align="left" src="{% static './images/gima_logo.png'%}" class="rounded float-left" alt="gima_logo" width="120em" height="90em">
+<div>
+   <h1 align="center"  style="color:#414141;">Gimatex Industries Pvt Ltd</h1><h3 align="center" style="color:#414141;">IT Dept IP LIST</h3>
+</div>
+
+<body >
+  {% include 'navbar.html' %}
+{% include 'scrollTop.html' %}
+{% include 'sticky.html' %}
+    <table class="table table-striped table-hover sortable">
+        <thead style="position: sticky;top: 0" class="thead-dark">
+            <tr>
+              <th class="header" scope="col">Sr_No</th>
+              <th class="header" scope="col">Group</th>
+              <th class="header" scope="col">IP Address</th>
+              <th class="header" scope="col">Site</th>
+              <th class="header" scope="col">Dept</th>
+              <th class="header" scope="col">MAC Address</th>
+              <th class="header" scope="col">UserName</th>
+              <th class="header" scope="col"> </th>
+              <th class="header" scope="col"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ip in iplists %}
+            <tr>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{forloop.counter}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.group}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.ip_address}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.site}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.dept}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.mac_address}}</td>
+              <td style="padding-bottom:0.3em;padding-top:0.3em;">{{ip.user_name}}</td>
+              {% if perms.auth.delete %}
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right"style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-info" href="update/{{ ip.id }}">Update</a></td>
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right" style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-danger" href="delete/{{ ip.id }}">Delete</a></td>
+              {% else %}
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right" style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-info" href="update/{{ ip.id }}">Update</a></td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+    <div>
+      {{ip.ip_address}}
+      {{ip.site}}
+      {{ip.dept}}
+      {{ip.user_name}}
+      {{ip.mac_address}}
+    </div>
+</body>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</html>

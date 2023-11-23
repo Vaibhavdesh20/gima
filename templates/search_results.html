@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+  <title>Gimatex IPList</title>
+  <link rel="icon" href="{% static './images/favicon.ico'%}">
+</head>
+{% include 'navbar.html' %}
+{% include 'scrollTop.html' %}
+{% include 'sticky.html' %}
+<body>
+  <h1>Search Results</h1>
+  <table class="table table-striped table-hover sortable">
+    <thead style="position: sticky;top: 0" class="thead-dark">
+        <tr>
+          <th class="header" scope="col">Sr_No</th>
+          <th class="header" scope="col">Group</th>
+          <th class="header" scope="col">IP Address</th>
+          <th class="header" scope="col">Site</th>
+          <th class="header" scope="col">Dept</th>
+          <th class="header" scope="col">UserName</th>
+          <th class="header" scope="col">MAC Address</th>
+          <th class="header" scope="col"> </th>
+          <th class="header" scope="col"> </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for iplist in object_list %}
+        <tr>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.id}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.group}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.ip_address}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.site}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.dept}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.user_name}}</td>
+          <td style="padding-bottom:0.3em;padding-top:0.3em;">{{iplist.mac_address}}</td>
+          {% if perms.auth.delete %}
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right" style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-info" href="update/{{ iplist.id }}">Update</a></td>
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right" style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-danger" href="delete/{{ iplist.id }}">Delete</a></td>
+              {% else %}
+              <td style="padding-bottom:0em;padding-top:0em;"><a align="right" style="padding-bottom:0em;padding-top:0em;margin-top: 0.3em;" class="btn btn-info" href="update/{{ iplist.id }}">Update</a></td>
+              {% endif %}
+         </tr>
+        {% endfor %}
+      </tbody>
+</body>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</html>

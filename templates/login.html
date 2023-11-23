@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+{% csrf_token %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gimatex IPList</title>
+    <link rel="icon" href="{% static './images/favicon.ico'%}">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+{% include 'messages.html' %}
+<body>
+   
+    <img src="{% static './images/gima_logo.png'%}" alt="gima_logo" height="200em">
+  <form method="post" action='{% url 'login' %}'>
+    {% csrf_token %}
+         <div class='em'>
+         <lable>Username</lable>
+          <input name='username' type="user" placeholder="Username" class="form-control form-control-lg">
+     </div>
+          <br>
+          <div>
+          <lable>Password</lable>
+           <input name='password' type="password" placeholder="Password">
+          </div>
+
+          
+        
+
+          <!-- <button class="btn btn-success btn-lg" style="background-color: #5CB85C; color: white;">
+            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+            <br>Signin</button> -->
+
+            
+                
+              
+          
+              
+            
+          
+
+          
+          <button class="btn btn-secondary" style="margin-bottom: 1em;" type="submit">Login</button> 
+          <br>
+          
+          <a class="text-white-50" style="color:white;margin-right: -4em;" href="{% url 'password_reset' %}">Forgot password?</a>
+       
+        </form> 
+      </body>
+</html>
